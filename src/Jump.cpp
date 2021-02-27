@@ -2,5 +2,7 @@
 
 void Jump::run()
 {
-  std::cout << "Run() from Jump called." << std::endl;
+  int direction;
+  ram_->getLabelDirection(parameter_, direction);
+  ram_->setPc(direction);
 }

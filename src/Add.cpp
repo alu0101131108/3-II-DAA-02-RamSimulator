@@ -2,15 +2,27 @@
 
 void AddInmediate::run()
 {
-  std::cout << "Run() from AddInmediate called." << std::endl;
+  int accumulator;
+  ram_->readFromMemory(0, accumulator);
+  ram_->writeToMemory(0, accumulator + parameter_);
+  ram_->incrementPc();
 }
 
 void AddDirect::run()
 {
-  std::cout << "Run() from AddDirect called." << std::endl;
+  int accumulator, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToMemory(0, accumulator + value);
+  ram_->incrementPc();
 }
 
 void AddIndirect::run()
 {
-  std::cout << "Run() from AddIndirect called." << std::endl;
+  int accumulator, valueRegister, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, valueRegister);
+  ram_->readFromMemory(valueRegister, value);
+  ram_->writeToMemory(0, accumulator + value);
+  ram_->incrementPc();
 }

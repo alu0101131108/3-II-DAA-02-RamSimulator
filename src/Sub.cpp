@@ -2,15 +2,27 @@
 
 void SubInmediate::run()
 {
-  std::cout << "Run() from SubInmediate called." << std::endl;
+  int accumulator;
+  ram_->readFromMemory(0, accumulator);
+  ram_->writeToMemory(0, accumulator - parameter_);
+  ram_->incrementPc();
 }
 
 void SubDirect::run()
 {
-  std::cout << "Run() from SubDirect called." << std::endl;
+  int accumulator, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToMemory(0, accumulator - value);
+  ram_->incrementPc();
 }
 
 void SubIndirect::run()
 {
-  std::cout << "Run() from SubIndirect called." << std::endl;
+  int accumulator, valueRegister, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, valueRegister);
+  ram_->readFromMemory(valueRegister, value);
+  ram_->writeToMemory(0, accumulator - value);
+  ram_->incrementPc();
 }

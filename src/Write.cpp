@@ -2,15 +2,23 @@
 
 void WriteInmediate::run()
 {
-  std::cout << "Run() from WriteInmediate called." << std::endl;
+  ram_->writeToOutputBand(parameter_);
+  ram_->incrementPc();
 }
 
 void WriteDirect::run()
 {
-  std::cout << "Run() from WriteDirect called." << std::endl;
+  int value;
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToOutputBand(value);
+  ram_->incrementPc();
 }
 
 void WriteIndirect::run()
 {
-  std::cout << "Run() from WriteIndirect called." << std::endl;
+  int value, registerDir;
+  ram_->readFromMemory(parameter_, registerDir);
+  ram_->readFromMemory(registerDir, value);
+  ram_->writeToOutputBand(value);
+  ram_->incrementPc();
 }

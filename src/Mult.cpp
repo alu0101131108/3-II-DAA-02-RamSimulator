@@ -2,15 +2,27 @@
 
 void MultInmediate::run()
 {
-  std::cout << "Run() from MultInmediate called." << std::endl;
+  int accumulator;
+  ram_->readFromMemory(0, accumulator);
+  ram_->writeToMemory(0, accumulator * parameter_);
+  ram_->incrementPc();
 }
 
 void MultDirect::run()
 {
-  std::cout << "Run() from MultDirect called." << std::endl;
+  int accumulator, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToMemory(0, accumulator * value);
+  ram_->incrementPc();
 }
 
 void MultIndirect::run()
 {
-  std::cout << "Run() from MultIndirect called." << std::endl;
+  int accumulator, valueRegister, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, valueRegister);
+  ram_->readFromMemory(valueRegister, value);
+  ram_->writeToMemory(0, accumulator * value);
+  ram_->incrementPc();
 }

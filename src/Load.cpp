@@ -2,15 +2,23 @@
 
 void LoadInmediate::run()
 {
-  std::cout << "Run() from LoadInmediate called." << std::endl;
+  ram_->writeToMemory(0, parameter_);
+  ram_->incrementPc();
 }
 
 void LoadDirect::run()
 {
-  std::cout << "Run() from LoadDirect called." << std::endl;
+  int value;
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToMemory(0, value);
+  ram_->incrementPc();
 }
 
 void LoadIndirect::run()
 {
-  std::cout << "Run() from LoadIndirect called." << std::endl;
+  int value, valueRegister;
+  ram_->readFromMemory(parameter_, valueRegister);
+  ram_->readFromMemory(valueRegister, value);
+  ram_->writeToMemory(0, value);
+  ram_->incrementPc();
 }

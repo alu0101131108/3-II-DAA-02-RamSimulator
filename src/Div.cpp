@@ -2,15 +2,27 @@
 
 void DivInmediate::run()
 {
-  std::cout << "Run() from DivInmediate called." << std::endl;
+  int accumulator;
+  ram_->readFromMemory(0, accumulator);
+  ram_->writeToMemory(0, accumulator / parameter_);
+  ram_->incrementPc();
 }
 
 void DivDirect::run()
 {
-  std::cout << "Run() from DivDirect called." << std::endl;
+  int accumulator, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, value);
+  ram_->writeToMemory(0, accumulator / value);
+  ram_->incrementPc();
 }
 
 void DivIndirect::run()
 {
-  std::cout << "Run() from DivIndirect called." << std::endl;
+  int accumulator, valueRegister, value;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, valueRegister);
+  ram_->readFromMemory(valueRegister, value);
+  ram_->writeToMemory(0, accumulator / value);
+  ram_->incrementPc();
 }

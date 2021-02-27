@@ -2,10 +2,17 @@
 
 void StoreDirect::run()
 {
-  std::cout << "Run() from StoreDirect called." << std::endl;
+  int accumulator;
+  ram_->readFromMemory(0, accumulator);
+  ram_->writeToMemory(parameter_, accumulator);
+  ram_->incrementPc();
 }
 
 void StoreIndirect::run()
 {
-  std::cout << "Run() from StoreIndirect called." << std::endl;
+  int accumulator, registerDir;
+  ram_->readFromMemory(0, accumulator);
+  ram_->readFromMemory(parameter_, registerDir);
+  ram_->writeToMemory(registerDir, accumulator);
+  ram_->incrementPc();
 }
