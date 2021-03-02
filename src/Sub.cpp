@@ -8,6 +8,13 @@ void SubInmediate::run()
   ram_->incrementPc();
 }
 
+void SubInmediate::unassembly()
+{
+  std::cout << "Instruction: SUB" << std::endl;
+  std::cout << "Addressing mode: Inmediate" << std::endl;
+  std::cout << "Operand: " << parameter_ << std::endl << std::endl;
+}
+
 void SubDirect::run()
 {
   int accumulator, value;
@@ -15,6 +22,13 @@ void SubDirect::run()
   ram_->readFromMemory(parameter_, value);
   ram_->writeToMemory(0, accumulator - value);
   ram_->incrementPc();
+}
+
+void SubDirect::unassembly()
+{
+  std::cout << "Instruction: SUB" << std::endl;
+  std::cout << "Addressing mode: Direct" << std::endl;
+  std::cout << "Address: " << parameter_ << std::endl << std::endl;
 }
 
 void SubIndirect::run()
@@ -25,4 +39,11 @@ void SubIndirect::run()
   ram_->readFromMemory(valueRegister, value);
   ram_->writeToMemory(0, accumulator - value);
   ram_->incrementPc();
+}
+
+void SubIndirect::unassembly()
+{
+  std::cout << "Instruction: SUB" << std::endl;
+  std::cout << "Addressing mode: Indirect" << std::endl;
+  std::cout << "Address: " << parameter_ << std::endl << std::endl;
 }

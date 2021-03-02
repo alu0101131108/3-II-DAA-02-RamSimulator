@@ -15,3 +15,9 @@ void Jzero::run()
     ram_->incrementPc();
   }
 }
+
+void Jzero::unassembly()
+{
+  std::cout << "Instruction: JZERO" << std::endl;
+  std::cout << "Label: " << parameter_ << std::endl << std::endl;
+}

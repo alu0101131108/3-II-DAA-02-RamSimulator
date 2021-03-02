@@ -12,6 +12,7 @@ public:
   Halt(RAM *ram, int line)
       : Instruction(ram, line) {}
   void run();
+  void unassembly();
 };
 
 #endif

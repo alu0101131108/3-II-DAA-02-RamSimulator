@@ -15,3 +15,9 @@ void Jgtz::run()
     ram_->incrementPc();
   }
 }
+
+void Jgtz::unassembly()
+{
+  std::cout << "Instruction: JGTZ" << std::endl;
+  std::cout << "Label: " << parameter_ << std::endl << std::endl;
+}

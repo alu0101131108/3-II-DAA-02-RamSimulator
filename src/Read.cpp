@@ -8,6 +8,13 @@ void ReadDirect::run()
   ram_->incrementPc();
 }
 
+void ReadDirect::unassembly()
+{
+  std::cout << "Instruction: READ" << std::endl;
+  std::cout << "Addressing mode: Direct" << std::endl;
+  std::cout << "Address: " << parameter_ << std::endl << std::endl;
+}
+
 void ReadIndirect::run()
 {
   int value, registerDir;
@@ -15,4 +22,11 @@ void ReadIndirect::run()
   ram_->readFromMemory(parameter_, registerDir);
   ram_->writeToMemory(registerDir, value);
   ram_->incrementPc();
+}
+
+void ReadIndirect::unassembly()
+{
+  std::cout << "Instruction: READ" << std::endl;
+  std::cout << "Addressing mode: Indirect" << std::endl;
+  std::cout << "Address: " << parameter_ << std::endl << std::endl;
 }

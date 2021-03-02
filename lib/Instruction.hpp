@@ -13,6 +13,7 @@ class Instruction {
   public:
     Instruction(RAM *ram, int line) : ram_(ram), line_(line) {}
     virtual void run() = 0;
+    virtual void unassembly() = 0;
 };
 
 #endif

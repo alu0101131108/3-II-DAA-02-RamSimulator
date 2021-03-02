@@ -15,6 +15,7 @@ public:
   Div(RAM *ram, int line, int parameter)
       : Instruction(ram, line), parameter_(parameter) {}
   virtual void run() = 0;
+  virtual void unassembly() = 0;
 };
 
 class DivInmediate : public Div
@@ -23,6 +24,7 @@ public:
   DivInmediate(RAM *ram, int line, int parameter)
       : Div(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 class DivDirect : public Div
@@ -31,6 +33,7 @@ public:
   DivDirect(RAM *ram, int line, int parameter)
       : Div(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 class DivIndirect : public Div
@@ -39,6 +42,7 @@ public:
   DivIndirect(RAM *ram, int line, int parameter)
       : Div(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 #endif

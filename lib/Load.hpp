@@ -15,6 +15,7 @@ public:
   Load(RAM *ram, int line, int parameter)
   : Instruction(ram, line), parameter_(parameter) {}
   virtual void run() = 0;
+  virtual void unassembly() = 0;
 };
 
 class LoadInmediate : public Load
@@ -23,6 +24,7 @@ public:
   LoadInmediate(RAM *ram, int line, int parameter) 
   : Load(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 class LoadDirect : public Load
@@ -31,6 +33,7 @@ public:
   LoadDirect(RAM *ram, int line, int parameter)
   : Load(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 class LoadIndirect : public Load
@@ -39,6 +42,7 @@ public:
   LoadIndirect(RAM *ram, int line, int parameter)
   : Load(ram, line, parameter) {}
   void run();
+  void unassembly();
 };
 
 #endif

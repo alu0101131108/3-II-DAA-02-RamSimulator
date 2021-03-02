@@ -15,6 +15,7 @@ public:
   Jzero(RAM *ram, int line, std::string parameter)
       : Instruction(ram, line), parameter_(parameter) {}
   void run();
+  void unassembly();
 };
 
 #endif
