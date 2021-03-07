@@ -40,12 +40,22 @@ void RAM::getLabelDirection(const std::string &label, int &direction)
 
 void RAM::setPc(const int &value)
 {
+  if (value + 1 > instructions_.size() || value < 0)
+  {
+    std::cout << "ERROR: Program Counter is out of valid range" << std::endl;
+    throw 80;
+  }
   pc_ = value;
 }
 
 void RAM::incrementPc()
 {
-  pc_++;
+  if (pc_ + 1 == instructions_.size())
+  {
+    std::cout << "ERROR: Program Counter is out of valid range, you might need a HALT instruction"<< std::endl;
+    throw 80;
+  }
+    pc_++;
 }
 
 void RAM::getHaltState(bool &halt)
@@ -401,7 +411,7 @@ void RAM::runNextInstruction()
 
 void RAM::runFullProgram() 
 {
-  if (haltState_)
+  if (!haltState_)
   {
     while (!haltState_)
     {

@@ -63,18 +63,17 @@ void Band::loadFromFile(const std::string &filename)
         line.resize(i);
         break;
       }
-      else if (!(currentSymbol >= '0' && currentSymbol <= '9') && currentSymbol != ' ' && currentSymbol != '\t')
-      {
-        std::cout << "ERROR: Bad syntax at input band" << std::endl << std::endl;
-        throw 40;
-      }
     }
     cleanInput = cleanInput + " " + line;
   }
   std::istringstream ss(cleanInput);
   while (!ss.eof())
   {
-    ss >> tempValue;
+    if (!(ss >> tempValue))
+    {
+      std::cout << "ERROR: Bad syntax at input band" << std::endl << std::endl;
+      throw 40;
+    }
     cells_.push_back(tempValue);
   }
   ifs.close();

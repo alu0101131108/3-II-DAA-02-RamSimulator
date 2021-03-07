@@ -1,0 +1,65 @@
+### C++ Code:
+#
+# int main() {
+#   int n, exp, result = 0;
+#   std::cin >> n;
+#   if (n <= 0) {
+#     std::cout << result << std::endl;
+#   }
+#   else {
+#     result = 1;
+#     exp = n;
+#     while (exp != 1)
+#     {
+#       if (exp % 2 != 0) {
+#         result = result * n;
+#       }
+#       n  = n * n;
+#       exp = exp / 2;
+#     }
+#     result = result * n;
+#     std::cout << result << std::endl;
+#   }
+# }
+#
+### RAM Code (R1: n, R2: exp, R3: result):
+
+            LOAD =0         # int result = 0;
+            STORE 3
+            READ 1          # std::cin >> n;
+            LOAD 1          # int exp = n;
+            STORE 2
+
+            MULT =-1        # if (n <= 0) jump fin
+            JZERO fin
+            JGTZ fin
+
+            LOAD =1         # result = 1;
+            STORE 3
+
+while:      LOAD 2          # while (exp - 1 != 0) {
+            SUB =1
+            JZERO fin
+
+            LOAD 2          # if ((exp / 2 * 2) - exp != 0) jump notOdd
+            DIV =2
+            MULT =2
+            SUB 2
+            JZERO notOdd
+            LOAD 3          # result = result * n;
+            MULT 1
+            STORE 3
+
+notOdd:     LOAD 1          # n = n * n;
+            MULT 1
+            STORE 1
+            LOAD 2          # exp = exp / 2;
+            DIV =2
+            STORE 2
+            JUMP while      # }
+
+fin:        LOAD 3          # result = result * n;
+            MULT 1
+            STORE 3
+            WRITE 3         # Write result to output band.
+            HALT
