@@ -24,5 +24,6 @@ En la carpeta Simulador-RAM-cpp/ioFiles encontrará:
 ### Ejecución.
 Para ejecutar el programa es necesario situarse en el directorio Simulador-RAM-cpp/bin y ejecutar el comando 
 * ./main.o ram-program.ram input_tape.in output_tape.out debug
+
 El primer argumento corresponderá al nombre del fichero .ram donde se aloje el código RAM que quiera ejecutarse. El segundo y tercer argumento corresponden al nombre de los ficheros que alojen las cintas de entrada y salida. Por último, el cuarto argumento (debug), corresponderá a un entero cuyo valor puede ser 0 (desactivado) o 1 (activado). Cuando debug este desactivado el programa se ejecutará de seguido mostrando por consola solamente el número de instrucciones ejecutadas en total. Cuando debug este activo, se mostrará un menú interactivo por consola con el cual se podrá ir viendo la ejecución de las instrucciones una a una, y revisar los contenidos de las estructuras de datos.
 
